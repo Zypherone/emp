@@ -13,7 +13,7 @@
 
 [![Contributors][contributors-shield]][contributors-url] [![Forks][forks-shield]][forks-url] [![Stargazers][stars-shield]][stars-url] [![Issues][issues-shield]][issues-url] [![JS Standard][build-style-shield]][build-style-url] [![MIT License][license-shield]][license-url]
 
-# Note Taker
+# Employee Tracker
 An application for managing a company's employees using node, inquirer, and MySQL.
 
 #### Table of Contents
@@ -57,7 +57,7 @@ node server
 Then use your preferred browser to access the Note Taker App.
 
 ## Demo
-<img src="ReadmeGeneratorExample.gif" width="250">
+<img src="demo.gif" width="250">
 
 ## License
 | Details | Author |

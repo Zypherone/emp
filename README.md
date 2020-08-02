@@ -22,6 +22,7 @@ An application for managing a company's employees using node, inquirer, and MySQ
 - [Code Style](#Code_Style)
 - [Installation](#Installation)
 - [Usage](#Usage)
+- [Demo](#Demo)
 - [License](#License)
 
 ---
@@ -32,7 +33,6 @@ An application for managing a company's employees using node, inquirer, and MySQ
 ## Built with
 - [Node.js](https://nodejs.org/en/)
 - [Inquirer.js](Inquirer.js)
-- [Jest](https://www.npmjs.com/package/jest)
 - [Axios](https://www.npmjs.com/package/axios)
 
 ## Code style
@@ -55,6 +55,9 @@ node server
 ```
 
 Then use your preferred browser to access the Note Taker App.
+
+## Demo
+<img src="ReadmeGeneratorExample.gif" width="250">
 
 ## License
 | Details | Author |

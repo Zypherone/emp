@@ -1,27 +1,30 @@
 {
   "name": "employee-tracker",
   "version": "1.0.0",
-  "description": "A method to track, update employee records.",
-  "main": "app.js",
-  "dependencies": {
-    "express": "^4.17.1",
-    "inquirer": "^7.1.0",
-    "mysql": "^2.18.1",
-    "nodemon": "^2.0.4"
+  "description": "I will architect and build a solution for managing a company's employees using node, inquirer, and MySQL.",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
   },
-  "devDependencies": {},
   "scripts": {
-    "start": "nodemon app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --verbose test/*"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Zypherone/employee-tracker.git"
   },
-  "author": "Zypherone",
+  "author": "Danu Tucker-Saunders (Zypherone",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Zypherone/employee-tracker/issues"
   },
-  "homepage": "https://github.com/Zypherone/employee-tracker#readme"
+  "homepage": "https://github.com/Zypherone/employee-tracker#readme",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "console-clear": "^1.1.1",
+    "console.table": "^0.10.0",
+    "figlet": "^1.4.0",
+    "inquirer": "^7.1.0",
+    "mysql": "^2.18.1"
+  }
 }

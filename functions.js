@@ -15,7 +15,7 @@ connection.connect(function(err) {
     console.error("error connecting: " + err.stack);
     return;
   }
-  console.log("connected as id " + connection.threadId);
+  //console.log("connected as id " + connection.threadId);
 });
 
 const tracker = {
@@ -39,11 +39,22 @@ const tracker = {
     switch(view) {
       case 'department':
           table = 'd.id';
-          query = !id ? query : query.concat(' AND d.id = ?'.replace('?', parseInt(id)));
+
+          if (typeof id === 'string') {
+            query = query + ` AND d.name = '${id}'`;
+          }
+          else {
+            query = !id ? query : query.concat(' AND d.id = ?'.replace('?', parseInt(id)));
+          }
         break;
       case 'role':
           table = 'r.id';
-          query = !id ? query : query.concat(' AND r.id = ?'.replace('?', parseInt(id)));
+          if (typeof id === 'string') {
+            query = query + ` AND r.title = '${id}'`;
+          }
+          else {
+            query = !id ? query : query.concat(' AND r.id = ?'.replace('?', parseInt(id)));
+          }
         break;
       case 'employee':
       default:
@@ -64,16 +75,85 @@ const tracker = {
     });
 
   },
-  createData: (firstName, lastName, roleId, managerId) => {
+  getData: (table, name) => {
+    query = `SELECT * FROM ?? WHERE CONCAT(first_name, ' ', last_name) = ?`;
 
+    return new Promise((resolve, reject) => {
+      connection.query(query, [table, name], (err, result) => {
+        if (err) throw err;
+
+        //console.table(result);
+
+        return resolve(result);
+       
+      });
+    });
+
+  },
+  grabId: (table, name) => {
+
+    let query = '';
+
+    if (table === 'role') {
+      query = `SELECT id FROM ?? WHERE title = ?`;
+    } else {
+      query = `SELECT id FROM ?? WHERE  CONCAT(first_name, ' ', last_name) = ?`;
+    }
+
+   // console.log(query);
+
+    return new Promise((resolve, reject) => {
+      connection.query(query, [table, name], (err, result) => {
+        if (err) throw err;
+
+        //console.table(result);
+
+        return resolve(result);
+       
+      });
+    });
+    
+  },
+  viewBy: (table) => {
+
+    let query = '';
+
+    if (table === 'role') {
+      query = `SELECT id, title as name FROM ?? WHERE id != -1`;
+    } 
+    else if (table === 'employee') {
+      query = `SELECT id, CONCAT(first_name, ' ', last_name) as name FROM ?? WHERE id != -1`;
+    } else {
+      query = `SELECT id, name FROM ?? WHERE id != -1`;
+    }
+
+   // console.log(query);
+
+    return new Promise((resolve, reject) => {
+      connection.query(query, [table], (err, result) => {
+        if (err) throw err;
+
+        //console.table(result);
+
+        return resolve(result);
+       
+      });
+    });
+
+  },
+  //createData: (firstName, lastName, roleId, managerId) => {
+  createData: (val) => {
+    const { firstName, lastName, roleId, managerId } = val;
     let data = { 
-      first_name: connection.escape(firstName),
-      last_name: connection.escape(lastName),
-        role_id: connection.escape(roleId),
-      manager_id: connection.escape(managerId)
+      first_name: trim(firstName),
+      last_name: trim(lastName),
+        role_id: roleId,
+      manager_id: managerId
     }
     
     let query = `INSERT INTO employee SET ?`;
+
+    console.log(query);
     
     return new Promise((resolve, reject) => {
       connection.query(query, data, (err, result) => {

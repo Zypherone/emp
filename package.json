@@ -1,0 +1,27 @@
+{
+  "name": "employee-tracker",
+  "version": "1.0.0",
+  "description": "A method to track, update employee records.",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "inquirer": "^7.1.0",
+    "mysql": "^2.18.1",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zypherone/employee-tracker.git"
+  },
+  "author": "Zypherone",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Zypherone/employee-tracker/issues"
+  },
+  "homepage": "https://github.com/Zypherone/employee-tracker#readme"
+}
